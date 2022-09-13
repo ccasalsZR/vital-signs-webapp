@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Hello World!</h1>
+
+    <p>This is my first page!</p>
+    <p>Isn't thas cool</p>
+
+    <p>My name is {{ first_name }} </p>
+
+    <p> {{ stuff|safe }} </p>
+
+    <div>
+        <canvas id="lineChart" width="700" height="400" style="background-color: #fff;"></canvas>
+        <!-- <canvas id="myChart"></canvas> -->
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script> 
+        var ctx = document.getElementById('lineChart');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ labels | safe }},
+                datasets: [{
+                    label: 'Data points',
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    data: {{ values | safe }},
+                    // fill: false
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: false
+            }
+        })
+    </script>
+
+    <script>
+        const labels = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+        ];
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+          }]
+        };
+      
+        const config = {
+          type: 'line',
+          data: data,
+          options: {}
+        };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+        );
+    </script>
+
+
+
+{% endblock %}
