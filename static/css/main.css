@@ -1,4 +1,24 @@
 
+body{
+    background-color: #F8FCFB;
+}
+
+h6{
+    font-size: small;
+    color: #666;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+  }
+
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
 .navbar.navbar-expand-lg.bg-light{
     background-color: #fff !important;
@@ -8,7 +28,7 @@ a.navbar-brand {
     padding-left: 10px;
 }
 
-.page-footer.font-small.blue.fixed-bottom{
+.page-footer.font-small.fixed-bottom{
     padding-top: 10px;
     padding-left: 10px;
 }

@@ -49,5 +49,5 @@ def page_not_found(e):
     return render_template('500.html'), 500
 
 
-if __name__ == '__name__':
-    app.run(debug=True)
+# if __name__ == '__name__':
+#     app.run(debug=True)
