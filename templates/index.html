@@ -9,19 +9,26 @@
         <div class="column">
             <h6>Free Cash Flow</h6>
             <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">-88.4</p>
+            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
+                <!-- {{ free_cash_flow }} -->
+                {{ '{:,.1f}'.format(free_cash_flow)}}
+            </p>
             </div>
         </div>
         <div class="column">
             <h6>External Revenue</h6>
             <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">1,111.7</p>
+            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
+                {{ "{:,.1f}".format(external_revenue) }}
+            </p>
             </div>
         </div>
         <div class="column">
             <h6>Contribution Margin 3</h6>
             <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">34.1</p>
+            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
+                {{ "{:,.1f}".format(contribution_margin_3) }}
+            </p>
             </div>
         </div>
         </div>
