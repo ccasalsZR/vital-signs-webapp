@@ -1,5 +1,24 @@
+import secrets
 from flask import Flask, render_template
+import snowflake.connector
+import pandas as pd
+import json
 
+
+def get_keys(path):
+    with open(path) as f:
+        return json.load(f)
+
+keys = get_keys('secrets.json')
+
+conn = snowflake.connector.connect(
+    user = keys['DB_SNOW_USER'],
+    password= keys['DB_SNOW_PASS'],
+    account='jt36375.eu-central-1',
+    warehouse='X_SMALL_WH',
+    database='DATAHUB'
+    # role='VITAL_SIGNS'
+)
 
 # Create a Flask Instance
 app = Flask(__name__)
@@ -25,12 +44,46 @@ def index():
     labels = [row[0] for row in data]
     values = [row[1] for row in data]
 
+    # execute SQL statement via cursor
+    cur=conn.cursor()
+    cur.execute('''
+        WITH CASH_FLOW AS (
+                SELECT SUM(INVESTMENT_CF) + SUM(OPERATING_CF) AS FREE_CASH_FLOW 
+                FROM ACCESS_LAYER.VS_VIEW_NWC_CASHFLOW  
+                WHERE 1=1
+                    AND SUBSEGMENT LIKE 'Group%'
+                    AND DATE_TRUNC(YEAR,DATEEXTRACT) = DATE_TRUNC(YEAR,CURRENT_DATE())
+            ) 
+            ,PERFORMANCE_VIEW AS (
+                SELECT SUM(IFF(CODE = 'PV300000', VALUE_CHF, 0)) AS EXTERNAL_REVENUE 
+                    ,SUM(IFF(CODE = 'PV500500', VALUE_CHF, 0)) AS CONTRIBUTION_MARGIN_3
+                FROM ACCESS_LAYER.VS_VIEW_PERFORMANCE_VIEW_2  
+                WHERE 1=1
+                    AND "TYPE" = 'perf_view'
+                --	AND SEGMENT = 'Group'
+                    AND DATE_TRUNC(YEAR,DATEEXTRACT) = DATE_TRUNC(YEAR,CURRENT_DATE())
+            )
+        SELECT * 
+        FROM CASH_FLOW
+        LEFT JOIN PERFORMANCE_VIEW
+    ''')
+
+    df = pd.DataFrame(cur.fetchall())
+
+    free_cash_flow = df.iloc[0][0]
+    external_revenue = df.iloc[0][1]/1000
+    contribution_margin_3 = df.iloc[0][2]/1000
+
     first_name = 'Carlos'
     stuff = 'This is <strong> Bold Text</strong>'
     return render_template('index.html',first_name=first_name
         ,stuff=stuff
         ,labels=labels
-        ,values=values)
+        ,values=values
+        ,free_cash_flow=free_cash_flow
+        ,external_revenue=external_revenue
+        ,contribution_margin_3=contribution_margin_3
+        )
 
 @app.route('/user/<name>')
 
