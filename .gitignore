@@ -2,3 +2,4 @@
 
 virt/
 secrets.json
+init_env_vars.sh
