@@ -3,12 +3,12 @@ from flask import Flask, render_template
 # import snowflake.connector
 # import pandas as pd
 # import json
-# import jwt
+import jwt
 import time
 import os
 
-METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
-METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
+METABASE_SITE_URL = os.getenv('METABASE_SITE_URL')
+METABASE_SECRET_KEY = os.getenv('METABASE_SECRET_KEY')
 
 
 payload = {
@@ -18,7 +18,7 @@ payload = {
   },
   "exp": round(time.time()) + (60 * 10) # 10 minute expiration
 }
-# token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
 
 # iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
 
