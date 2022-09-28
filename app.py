@@ -22,14 +22,14 @@ import os
 
 # iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
 
-conn = snowflake.connector.connect(
-    user = os.getenv('DB_SNOW_USER'),
-    password= os.getenv('DB_SNOW_PASS'),
-    account='jt36375.eu-central-1',
-    warehouse='X_SMALL_WH',
-    database='DATAHUB'
-    # role='VITAL_SIGNS'
-)
+# conn = snowflake.connector.connect(
+#     user = os.getenv('DB_SNOW_USER'),
+#     password= os.getenv('DB_SNOW_PASS'),
+#     account='jt36375.eu-central-1',
+#     warehouse='X_SMALL_WH',
+#     database='DATAHUB'
+#     # role='VITAL_SIGNS'
+# )
 
 # Create a Flask Instance
 app = Flask(__name__)
