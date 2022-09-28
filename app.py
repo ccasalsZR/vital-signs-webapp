@@ -7,20 +7,20 @@ from flask import Flask, render_template
 # import time
 # import os
 
-# METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
-# METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
+METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
+METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
 
 
-# payload = {
-#   "resource": {"question": 3},
-#   "params": {
+payload = {
+  "resource": {"question": 3},
+  "params": {
     
-#   },
-#   "exp": round(time.time()) + (60 * 10) # 10 minute expiration
-# }
-# token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+  },
+  "exp": round(time.time()) + (60 * 10) # 10 minute expiration
+}
+token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
 
-# iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
+iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
 
 # conn = snowflake.connector.connect(
 #     user = os.getenv('DB_SNOW_USER'),
