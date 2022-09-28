@@ -3,8 +3,8 @@ from flask import Flask, render_template
 import snowflake.connector
 # import pandas as pd
 # import json
-import jwt
-import time
+# import jwt
+# import time
 import os
 
 # METABASE_SITE_URL = os.getenv('METABASE_SITE_URL')
