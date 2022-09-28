@@ -89,7 +89,6 @@ def index():
     
     return render_template('index.html',first_name=first_name
         ,stuff=stuff
-        ,METABASE_SECRET_KEY=METABASE_SITE_URL
         # ,labels=labels
         # ,values=values
         # ,iframeUrl=iframeUrl
