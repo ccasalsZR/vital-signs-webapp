@@ -1,6 +1,6 @@
 # import secrets
 from flask import Flask, render_template
-import snowflake.connector
+# import snowflake.connector
 import pandas as pd
 # import json
 import jwt
