@@ -5,10 +5,10 @@ from flask import Flask, render_template
 # import json
 # import jwt
 # import time
-# import os
+import os
 
-# METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
-# METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
+METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
+METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
 
 
 # payload = {
