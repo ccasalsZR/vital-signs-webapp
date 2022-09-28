@@ -2,26 +2,25 @@
 from flask import Flask, render_template
 # import snowflake.connector
 import pandas as pd
-from collections import Mapping
 # import json
 import jwt
 import time
 import os
 
-METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
-METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
+# METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
+# METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
 
 
-payload = {
-  "resource": {"question": 3},
-  "params": {
+# payload = {
+#   "resource": {"question": 3},
+#   "params": {
     
-  },
-  "exp": round(time.time()) + (60 * 10) # 10 minute expiration
-}
-token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+#   },
+#   "exp": round(time.time()) + (60 * 10) # 10 minute expiration
+# }
+# token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
 
-iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
+# iframeUrl = METABASE_SITE_URL + "/embed/question/" + token.decode('utf-8') + "#bordered=true&titled=false"
 
 # conn = snowflake.connector.connect(
 #     user = os.getenv('DB_SNOW_USER'),
@@ -41,18 +40,18 @@ app = Flask(__name__)
 
 def index():
 
-    data = [
-        ('01-01-2022',1597),
-        ('01-02-2022',1496),
-        ('01-03-2022',1908),
-        ('01-04-2022',896),
-        ('01-05-2022',755),
-        ('01-06-2022',453),
-        ('01-07-2022',1100),
-    ]
+    # data = [
+    #     ('01-01-2022',1597),
+    #     ('01-02-2022',1496),
+    #     ('01-03-2022',1908),
+    #     ('01-04-2022',896),
+    #     ('01-05-2022',755),
+    #     ('01-06-2022',453),
+    #     ('01-07-2022',1100),
+    # ]
 
-    labels = [row[0] for row in data]
-    values = [row[1] for row in data]
+    # labels = [row[0] for row in data]
+    # values = [row[1] for row in data]
 
     # # execute SQL statement via cursor
     # cur=conn.cursor()
@@ -90,8 +89,8 @@ def index():
     
     return render_template('index.html',first_name=first_name
         ,stuff=stuff
-        ,labels=labels
-        ,values=values
+        # ,labels=labels
+        # ,values=values
         # ,iframeUrl=iframeUrl
         # ,free_cash_flow=free_cash_flow
         # ,external_revenue=external_revenue
