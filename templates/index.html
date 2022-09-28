@@ -3,36 +3,7 @@
 {% block content %}
 
      
-    <div class="container">
-        <h4>Profitable growth</h4>
-        <div class="row" style="padding-top: 15px;">
-        <div class="column">
-            <h6>Free Cash Flow</h6>
-            <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
-                <!-- {{ free_cash_flow }} -->
-                {{ '{:,.1f}'.format(free_cash_flow)}}
-            </p>
-            </div>
-        </div>
-        <div class="column">
-            <h6>External Revenue</h6>
-            <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
-                {{ "{:,.1f}".format(external_revenue) }}
-            </p>
-            </div>
-        </div>
-        <div class="column">
-            <h6>Contribution Margin 3</h6>
-            <div>
-            <p style="font-size: xx-large; text-align: center ; color: #22594C;">
-                {{ "{:,.1f}".format(contribution_margin_3) }}
-            </p>
-            </div>
-        </div>
-        </div>
-    </div>
+    
 
     <h1>Hello World!</h1>
 
@@ -50,13 +21,12 @@
     <p>My name is {{ first_name }} </p>
 
     <p> {{ stuff|safe }} </p>
-
+<!-- 
     <div>
         <canvas id="lineChart" width="700" height="400" style="background-color: #fff;"></canvas>
-        <!-- <canvas id="myChart"></canvas> -->
-    </div>
+    </div> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-    <script> 
+    <!-- <script> 
         var ctx = document.getElementById('lineChart');
         var lineChart = new Chart(ctx, {
             type: 'line',
@@ -75,9 +45,9 @@
                 responsive: false
             }
         })
-    </script>
+    </script> -->
 
-    <script>
+    <!-- <script>
         const labels = [
           'January',
           'February',
@@ -102,14 +72,14 @@
           data: data,
           options: {}
         };
-    </script>
+    </script> -->
 
-    <script>
+    <!-- <script>
         const myChart = new Chart(
         document.getElementById('myChart'),
         config
         );
-    </script>
+    </script> -->
 
 
 
