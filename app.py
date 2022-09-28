@@ -2,6 +2,7 @@
 from flask import Flask, render_template
 # import snowflake.connector
 import pandas as pd
+from collections import Mapping
 # import json
 import jwt
 import time
