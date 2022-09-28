@@ -7,8 +7,8 @@ import jwt
 import time
 import os
 
-METABASE_SITE_URL = os.environ.get('METABASE_SITE_URL')
-METABASE_SECRET_KEY = os.environ.get('METABASE_SECRET_KEY')
+METABASE_SITE_URL = os.environ['METABASE_SITE_URL']
+METABASE_SECRET_KEY = os.environ['METABASE_SECRET_KEY']
 
 
 payload = {
